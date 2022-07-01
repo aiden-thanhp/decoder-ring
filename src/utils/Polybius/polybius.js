@@ -55,7 +55,7 @@ function splitDecodingInput(input) { //function to return an array of each pair 
 
 export function polybius(input, encode = true) {
   if (!encode) { //if not encoding, do decoding
-    if (!checkDecodingLength(input)) return false; //check if the length is even
+    if (!checkDecodingLength(input)) return "Something went wrong"; //check if the length is even
     else {
       const decodingArray = splitDecodingInput(input); 
       const output = decodingArray.reduce((result, id) => { //decoding the array

@@ -42,7 +42,7 @@ function callLetter(letters, sub) {
 export function substitution(input, alphabet, encode = true) {
   if (!alphabet
       || alphabet.length != 26
-      || !isUnique(alphabet)) return false;
+      || !isUnique(alphabet)) return "Something went wrong";
   let outputArray = [];
   const letters = assignSub(alphabet);
   if (encode) {

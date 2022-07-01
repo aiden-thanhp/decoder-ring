@@ -20,7 +20,7 @@ function callLetter(letters, id) { //return letter as a string from a given id
 }
 
 export function caesar(input, shift, encode = true) {
-  if (shift === 0 || shift < -25 || shift > 25) return false;
+  if (shift === 0 || shift < -25 || shift > 25) return "Something went wrong";
   else {
     if (!encode) shift = -shift;
     
