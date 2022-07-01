@@ -1,20 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Card } from "../../components/Card/Card";
 import { Intro } from "../../components/Intro/Intro";
-import { readGame } from "../../utils/api"
 import { Output } from "../../components/Output/Output"
 import { polybius } from "../../utils"
+import { games } from "../../games"; 
 
 export default function PolybiusPage() {
     const gameId = 2;
+    const game = games.find(game => game.id === gameId)
     const [output, setOutput] = useState("No message as of yet...");
-    const [game, setGame] = useState();
-    
-    useEffect(() => {
-        const controller = new AbortController();
-        const signal = controller.signal;
-        readGame(gameId, signal).then((game) => setGame(game));
-    }, [gameId])
 
     if (game) {
         const formInputs = game.formInputs;

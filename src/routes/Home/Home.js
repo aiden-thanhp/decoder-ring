@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Intro } from "../../components/Intro/Intro";
 import { HomeCard } from "./components/HomeCard";
-import { listGames } from "../../utils/api"
+import { games } from "../../games"; 
 
 export default function Home() {
+    const gameList = games;
+
     const title = "Welcome to The Decoder Ring";
     const text = "Visit the Decoding Ring to find different encoding and decoding methods that would blows your mind.";
-
-    const [gameList, setGameList] = useState();
-
-    useEffect(() => {
-        const controller = new AbortController();
-        const signal = controller.signal;
-        listGames(signal).then((games) => setGameList(games));
-        return () => controller.abort();
-    }, [])
 
     if (gameList) {
         return (
@@ -29,5 +22,5 @@ export default function Home() {
                 </div>
             </>
         )
-    } else return "Loading game here..."
+    } else return "There is no games..."
 }
