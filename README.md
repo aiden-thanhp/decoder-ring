@@ -2,7 +2,7 @@
 
 ## About The Project
 
-<img src="https://github.com/aiden-thanhp/decoder-ring/blob/master/src/assets/screenshot.png" />
+<img src="./assets/screenshot.png" />
 
 This project started as a Javascript assignment from my Thinkful course. I then created a simple website to manage to show the project to end users. I used React.js, Javascript, HTML, and Bootstrap to create the site and deployed it into Vercel.
 
