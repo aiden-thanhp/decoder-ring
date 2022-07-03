@@ -3,6 +3,10 @@ import { Route, Switch } from "react-router-dom";
 import Header from "./Header";
 import { Home, PolybiusPage, CaesarPage, SubstitutionPage } from "../routes"
 
+/**
+ * Include all the routes that will be rendered. Each game has its own separate page.
+ */
+
 export default function Layout() {
 
     return (

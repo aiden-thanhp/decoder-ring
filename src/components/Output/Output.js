@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * @arg output
+ *  take an output and display to user
+ */
+
 export function Output({ output="No message as of yet..."}) {
     return (
         <div className="card my-4 mx-2">

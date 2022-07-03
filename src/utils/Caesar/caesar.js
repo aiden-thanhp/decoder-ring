@@ -1,43 +1,51 @@
-const alphabet = "abcdefghijklmnopqrstuvwxyz".split(""); //call the alphabets array
-const letters = alphabet.reduce((result, letter, index) => { //create an array of letters and id
+// This is Caesar Shift algorithm
+
+// Call an array of alphabets and create an array of letter and assigned Id
+const alphabet = "abcdefghijklmnopqrstuvwxyz".split(""); 
+const letters = alphabet.reduce((result, letter, index) => { 
   result.push({
       'letter': letter,
       'id': index + 1
   })
   return result;
 }, []);
-const symbols = " ~`!@#$%^&*()-=_+{}[];:'<,>.?/"; //define an array with all symbols
 
-function callId(letters, letter) { //return id as an integer from a given letter
+// Call an string with all symbols
+const symbols = " ~`!@#$%^&*()-=_+{}[];:'<,>.?/"; 
+
+// function to return an id from a letter
+function callId(letters, letter) {
   const letterId = letters.filter(element => element.letter === letter)
                           .map(element => element.id).join("");
   return parseInt(letterId);
 }
 
-function callLetter(letters, id) { //return letter as a string from a given id
+// function to return a letter from an id
+function callLetter(letters, id) {
   return letters.filter(element => element.id === id)
                 .map(element => element.letter).join("");
 }
 
+// caesar function accepts an input, a shift number, and a boolean for encode
 export function caesar(input, shift, encode = true) {
-  if (shift === 0 || shift < -25 || shift > 25) return "Something went wrong";
+  if (shift === 0 || shift < -25 || shift > 25) return "Shift number needs to be between -25 and 25 and not 0";
   else {
     if (!encode) shift = -shift;
     
-    const inputArray = input.toLowerCase().split(""); //turn the input into an array with all lower cases
-    let outputArray = []; //define the new output array as empty
-    inputArray.forEach(char => { //loop through the inputArray
+    const inputArray = input.toLowerCase().split(""); 
+    let outputArray = []; 
+    inputArray.forEach(char => {
       
-      if (!symbols.includes(char)) { //if character is not symbols
-        const currentId = callId(letters, char); //get id for current character
-        let newId = currentId + shift;  //shift the id
-        if (newId > 26) newId -= 26; //if shift too far right, get back to the first letter
-        if (newId < 1) newId += 26; //if shift too far left, get back to the last letter
-        const newChar = callLetter(letters, newId); //get the new character
-        outputArray.push(newChar); //push the new character into the outputArray
-      } else { outputArray.push(char); } //leave symbols as is
+      if (!symbols.includes(char)) {
+        const currentId = callId(letters, char); 
+        let newId = currentId + shift;  
+        if (newId > 26) newId -= 26; 
+        if (newId < 1) newId += 26; 
+        const newChar = callLetter(letters, newId); 
+        outputArray.push(newChar); 
+      } else { outputArray.push(char); } 
       
     });
-    return outputArray.join(""); //return the new string
+    return outputArray.join("");
   }
 }

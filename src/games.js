@@ -1,3 +1,5 @@
+// List of games
+
 export const games = [
     {
         "id": 1,

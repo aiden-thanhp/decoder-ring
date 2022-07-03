@@ -1,6 +1,10 @@
 import React from "react";
 import logo from "../assets/Logo.png"
 
+/**
+ * Header of the webpage, it will be rendered on all webpage
+ */
+
 export default function Header() {
     return (
         <div className="sticky-top header">

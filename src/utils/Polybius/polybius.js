@@ -1,7 +1,11 @@
-const alphabet = "abcdefghiklmnopqrstuvwxyz".split(""); //call an alphabet array 
+// This is Polybius algorithm
 
+// Call an array of alphabets and create an array of letter and assigned Id
+const alphabet = "abcdefghiklmnopqrstuvwxyz".split("");
+
+//create a grid array with all ids for each letter
 const grid = [1, 2, 3, 4, 5]; 
-const idArray = []; //create a grid array with all ids for each letter
+const idArray = []; 
   grid.forEach(verticalEle => {
       grid.forEach(horizontalEle => {
           idArray.push(`${horizontalEle}${verticalEle}`)
@@ -13,34 +17,39 @@ const letters = alphabet.reduce((result, letter, index) => {
       'letter': letter,
       'id': idArray[index]
   })
-  return result; // assign each letter with their id
+  return result; 
 }, []);
 
-function callId(letters, letter) { //call id based on the letter
-  if (letter === " ") return " "; //ignore space
+// function to call id from a letter
+function callId(letters, letter) { 
+  if (letter === " ") return " "; 
   else {
-    if (letter === "j") letter = "i"; //letter i and j return the same id
+    if (letter === "j") letter = "i"; 
     return letters.filter(element => element.letter === letter)
                   .map(element => element.id).join("");
   }
 }
 
-function callLetter(letters, id) { //call letter based on the id
-  if (id === " ") return " "; //ignore space
+// function to call a letter from an id
+function callLetter(letters, id) { 
+  if (id === " ") return " "; 
   else {
     let result = letters.filter(element => element.id === id)
                         .map(element => element.letter).join("");
-    if (result === 'i') result = '(i/j)'; //return both i and j for id 42
+    //return both i and j for id 42
+    if (result === 'i') result = '(i/j)'; 
     return result;
   }
 }
 
-function checkDecodingLength(input) { //function to check if decoding message has even length
+// function to check if decoding message has even length
+function checkDecodingLength(input) { 
   const splitArray = input.split(" ");
   return splitArray.every((element) => element.length % 2 === 0)
 }
 
-function splitDecodingInput(input) { //function to return an array of each pair of id including space
+// function to return an array of each pair of id including space
+function splitDecodingInput(input) { 
   const splitArray = input.split(" ");
   const resultArray = [];
   splitArray.forEach(element => {
@@ -53,19 +62,22 @@ function splitDecodingInput(input) { //function to return an array of each pair 
   return resultArray;
 }
 
+// polybius function accepst an input and a boolean for encode
 export function polybius(input, encode = true) {
-  if (!encode) { //if not encoding, do decoding
-    if (!checkDecodingLength(input)) return "Something went wrong"; //check if the length is even
+  if (!encode) {
+    if (!checkDecodingLength(input)) return "You need to have a even amount of numbers"; 
     else {
+      // decoding funciton
       const decodingArray = splitDecodingInput(input); 
-      const output = decodingArray.reduce((result, id) => { //decoding the array
+      const output = decodingArray.reduce((result, id) => { 
         result.push(callLetter(letters, id));
         return result;
       }, [])
       return output.join("");
     }
   } else {
-    const output = input.toLowerCase().split("").reduce((result, letter) => { //encoding the array
+    // encoding function
+    const output = input.toLowerCase().split("").reduce((result, letter) => { 
       result.push(callId(letters, letter));
       return result;
     }, []);

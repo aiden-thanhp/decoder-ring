@@ -2,6 +2,8 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Button from "../../../components/Button/Button"
 
+// This is the card to display each game that we have.
+
 export function HomeCard({ game }) {
     const history = useHistory();
     const style = { width: '18rem'}

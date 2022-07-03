@@ -1,5 +1,9 @@
+ // This is Substitution algorithm
+
+// Call an array of alphabets array
 const alphabets = "abcdefghijklmnopqrstuvwxyz".split(""); 
 
+// define a function to check if the alphabet key is unique
 function isUnique(string) {
   const charCount = {};
   for (let i = 0; i < string.length; i++) {
@@ -13,6 +17,7 @@ function isUnique(string) {
   return true;
 }
 
+// assign id to the alphabet
 function assignSub(alphabet) {
   const subArray = alphabet.split("");
   const letters = alphabets.reduce((result, letter, index) => {
@@ -29,20 +34,23 @@ function assignSub(alphabet) {
   return letters;
 }
 
+// call a substitution from the main letter
 function callSub(letters, letter) {  
   return letters.filter(element => element.letter === letter)
                 .map(element => element.id).join("");
 }
 
+// call the main letter from the substitution
 function callLetter(letters, sub) { 
   return letters.filter(element => element.id === sub)
                 .map(element => element.letter).join("");
 }
 
+// substitution function accepts an input, alphabet key and an boolean for encoding
 export function substitution(input, alphabet, encode = true) {
   if (!alphabet
       || alphabet.length != 26
-      || !isUnique(alphabet)) return "Something went wrong";
+      || !isUnique(alphabet)) return "Your alphabet key does not have enough of 26 unique characters";
   let outputArray = [];
   const letters = assignSub(alphabet);
   if (encode) {

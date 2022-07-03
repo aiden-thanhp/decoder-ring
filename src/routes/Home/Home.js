@@ -3,6 +3,8 @@ import { Intro } from "../../components/Intro/Intro";
 import { HomeCard } from "./components/HomeCard";
 import { games } from "../../games"; 
 
+// This is the Home Page of the website.
+
 export default function Home() {
     const gameList = games;
 
